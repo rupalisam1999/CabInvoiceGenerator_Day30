@@ -33,15 +33,20 @@ namespace CabInvoiceGenerator_Day30
             });
         }
 
-        public double CalculateAggregate()
+        public InvoiceSummary CalculateAggregate()
         {
             double fair = 0;
-            IEnumerable<Ride> rides = null;
             foreach (Ride ride in rides)
             {
                 fair += CalculateFair(ride.distance, ride.time);
             }
-            return fair;
+            var summary = new InvoiceSummary()
+            {
+                TotalNoOfRides = rides.Count,
+                AvgFair = fair / rides.Count,
+                TotalFair = fair
+            };
+            return summary;
         }
     }
 }
