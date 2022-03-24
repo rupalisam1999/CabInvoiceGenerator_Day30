@@ -24,5 +24,13 @@ namespace CabInvoiceGeneratorTesting
             double fair = cabInvoiceGenerator.CalculateFair(0, 0);
             Assert.AreEqual(5, fair);
         }
+        [Test]
+        public void CalAggFairAndMultipleRide()
+        {
+            cabInvoiceGenerator.AddRide(2, 5);
+            cabInvoiceGenerator.AddRide(12, 15);
+            double fair = cabInvoiceGenerator.CalculateAggregate();
+            Assert.AreEqual(160, fair);
+        }
     }
 }
